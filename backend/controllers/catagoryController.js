@@ -24,7 +24,6 @@ const getSingleCatagory = async (req, res) => {
     if (!catagorys) {
       return res.status(404).send("Product not found");
     }
-    console.log(catagorys);
     res.status(200).json(catagorys);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -42,9 +41,7 @@ const createCatagory = async (req, res) => {
     });
 
     const results = await cloudinary.uploader.upload("./image/headphone.png");
-    console.log(name);
     const url = cloudinary.url(results.public_id);
-    console.log(results);
     const catagorys = await catagory.create({
       name: name,
       description: description,
